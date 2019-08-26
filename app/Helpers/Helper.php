@@ -124,7 +124,7 @@ class Helper implements HelperContract
 
 		   function getToken($student)
            {
-           	$ret = [];
+           	$temp = [];
                $ts = Tokens::where('student_id',$student)->get();
  
               if($ts != null)
@@ -142,7 +142,7 @@ class Helper implements HelperContract
                    }                      
                }	                                
                                                       
-                return $ret;
+                return $temp;
            }				   
           
            
