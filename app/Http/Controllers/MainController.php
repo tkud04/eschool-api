@@ -62,6 +62,8 @@ class MainController extends Controller {
         $validator = Validator::make($req, [
                              'student_id' => 'required',
                              'token' => 'required',
+                             'sc' => 'required',
+                             'cid' => 'required',
          ]);
          
          if($validator->fails())
@@ -76,6 +78,35 @@ class MainController extends Controller {
              
              	$ret = ["status" => "ok","data" => $dt];       
          }
+         return json_encode($ret);		 
+    }
+	
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getTokens(Request $request)
+    {
+        $user = null;
+		
+		
+		$req = $request->all();
+        //dd($req);
+		$ret = ["status" => "error","data" => "Connection failed."];
+        
+             //$schoolCode = $this->helpers->getSchoolCode($req);
+			 $tokens = $this->helpers->getTokens();
+			 
+             if($tokens == null || count($tokens) < 1)
+             {
+             	$ret = ["status" => "error","data" => "No tokens"];
+             }
+             else
+             {
+             	$ret = ["status" => "ok","data" => $tokens];
+             }        
+         
          return json_encode($ret);		 
     }
 

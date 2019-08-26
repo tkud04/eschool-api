@@ -13,7 +13,7 @@ class Tokens extends Model
      * @var array
      */
     protected $fillable = [
-        'student_id', 'token', 'status'
+        'student_id', 'token', 'class_id', 'status'
     ];
     
 }

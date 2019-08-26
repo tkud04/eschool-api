@@ -72,6 +72,8 @@ class Helper implements HelperContract
 			 if(count($token) < 1){
            	$ret = Tokens::create(['student_id' => $data['student_id'], 
                                                       'token' => $data['token'],                                                                                                            
+                                                      'class_id' => $data['cid'],                                                                                                            
+                                                      'school_code' => $data['sc'],                                                                                                            
                                                       'status' => "ok"                                                                                                            
                                                       ]);                                                     
                 $ret = "Token created";
@@ -93,6 +95,7 @@ class Helper implements HelperContract
                    	  $ret['id'] = $t->id; 
                       $ret['student_id'] = $t->student_id; 
                       $ret['token'] = $t->token; 
+                      $ret['class_id'] = $t->class_id; 
                       $ret['status'] = $t->status; 
                       $ret['date'] = $t->created_at->format("jS F, Y h:i A"); 
 					  array_push($temp,$ret);
@@ -112,6 +115,7 @@ class Helper implements HelperContract
                	$ret['id'] = $t->id; 
                    $ret['student_id'] = $t->student_id; 
                    $ret['token'] = $t->token; 
+				   $ret['class_id'] = $t->class_id; 
                    $ret['status'] = $t->status; 
                    $ret['date'] = $t->created_at->format("jS F, Y h:i A"); 
                }                                 
