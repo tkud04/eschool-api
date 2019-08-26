@@ -120,6 +120,11 @@ class Helper implements HelperContract
                }			   
                                                       
                 return $temp;
+           }	
+
+		   function deleteToken($tk)
+           {
+           	$ts = Tokens::where('token',$tk)->delete();
            }		
 
 		   function getToken($student)

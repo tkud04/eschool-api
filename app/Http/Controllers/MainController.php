@@ -170,6 +170,41 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
+	public function getLogout(Request $request)
+    {
+        $user = null;
+		
+		
+		$req = $request->all();
+        //dd($req);
+		$ret = ["status" => "error","data" => "Connection failed."];
+        
+		  $validator = Validator::make($req, [
+                             'tk' => 'required',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             $ret = ["status" => "error","data" => $messages];
+         }
+         
+         else
+         {
+			 $token = $this->helpers->deleteToken($req['tk']);
+			 
+             	$ret = ["status" => "ok","data" => "Logged out of notifications API"];          
+         }
+                
+         
+         return json_encode($ret);		 
+    }
+
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
 	public function getVersion()
     {
        $ret = ["version" => "1.0","status" => "beta","data" => "ESchool API 1.0. See documentation for help on usage"];
