@@ -64,12 +64,28 @@ class Helper implements HelperContract
 
        
            
+           function tokenExists($dt)
+		   {
+			   $ret = false;
+			   $t = Tokens::where('token',$dt['token'])
+			              ->where('class_id',$dt['cid'])
+			              ->where('school_code',$dt['sc'])
+			              ->where('student_id',$dt['student_id'])->first();
+			   
+			   if($t != null)
+			   {
+				   $ret = true;
+			   }
+			   
+			   return $ret;
+		   }
+		   
            function createToken($data)
            {
-			 $token = $this->getToken($data['student_id']);
+			 $te = $this->tokenExists($data);
 			 $ret = "Token already exists";
 			 
-			 if(count($token) < 1){
+			 if(!$te){
            	$ret = Tokens::create(['student_id' => $data['student_id'], 
                                                       'token' => $data['token'],                                                                                                            
                                                       'class_id' => $data['cid'],                                                                                                            
