@@ -15,6 +15,4 @@
 
 Route::get('/', 'MainController@getIndex');
 
-Route::get('about', 'MainController@getAbout');
-Route::get('bundle', 'MainController@getBundle');
 

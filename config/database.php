@@ -39,14 +39,14 @@ return [
             'prefix' => '',
         ],
 
-		//mysql://be1f93332b1f5d:2ee2e7dc@us-cdbr-iron-east-04.cleardb.net/heroku_f826352c3070c58?reconnect=true
+		//mysql://bcd8db33241c1b:8acc6a0f@us-cdbr-iron-east-02.cleardb.net/heroku_91f1da3af3e0723?reconnect=true
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'us-cdbr-iron-east-03.cleardb.net'),
+            'host' => env('DB_HOST', 'us-cdbr-iron-east-02.cleardb.net'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'heroku_591fcbb095a1c61'),
-            'username' => env('DB_USERNAME', 'bf8a872fafe37d'),
-            'password' => env('DB_PASSWORD', '63b6ba09'),
+            'database' => env('DB_DATABASE', 'heroku_91f1da3af3e0723'),
+            'username' => env('DB_USERNAME', 'bcd8db33241c1b'),
+            'password' => env('DB_PASSWORD', '8acc6a0f'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',

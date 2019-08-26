@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Carts extends Model
+class Tokens extends Model
 {
 
     /**
@@ -13,7 +13,7 @@ class Carts extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'sku', 'qty','auction_id','type'
+        'student_id', 'token', 'status'
     ];
     
 }
