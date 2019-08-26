@@ -73,7 +73,29 @@ class Helper implements HelperContract
                 return $ret;
            }	
 
-            function getToken($student)
+            function getTokens()
+           {
+           	$temp = [];
+               $ts = Tokens::where('id','>','0')->get();
+ 
+              if($ts != null)
+               {
+				   foreach($ts as $t)
+				   {
+					  $ret = [];
+                   	  $ret['id'] = $t->id; 
+                      $ret['student_id'] = $t->student_id; 
+                      $ret['token'] = $t->token; 
+                      $ret['status'] = $t->status; 
+                      $ret['date'] = $t->created_at->format("jS F, Y h:i A"); 
+					  array_push($temp,$ret);
+                   }                      
+               }			   
+                                                      
+                return $temp;
+           }		
+
+		   function getToken($student)
            {
            	$ret = [];
                $t = Tokens::where('student_id',$student)->first();
