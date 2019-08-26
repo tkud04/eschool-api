@@ -122,6 +122,48 @@ class MainController extends Controller {
          
          return json_encode($ret);		 
     }
+	
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getToken(Request $request)
+    {
+        $user = null;
+		
+		
+		$req = $request->all();
+        //dd($req);
+		$ret = ["status" => "error","data" => "Connection failed."];
+        
+		  $validator = Validator::make($req, [
+                             'student_id' => 'required',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             $ret = ["status" => "error","data" => $messages];
+         }
+         
+         else
+         {
+			 $token = $this->helpers->getToken($req['student_id']);
+			 
+             if($token == null || count($token) < 1)
+             {
+             	$ret = ["status" => "error","data" => "No tokens"];
+             }
+             else
+             {
+             	$ret = ["status" => "ok","data" => $token];
+             }           
+         }
+                
+         
+         return json_encode($ret);		 
+    }
 
 	/**
 	 * Show the application welcome screen to the user.

@@ -16,5 +16,6 @@
 Route::get('/', 'MainController@getIndex');
 Route::get('push-token', 'MainController@getPushToken');
 Route::get('tokens', 'MainController@getTokens');
+Route::get('token', 'MainController@getToken');
 
 
