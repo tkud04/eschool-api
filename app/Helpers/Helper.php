@@ -82,10 +82,11 @@ class Helper implements HelperContract
 			 return $ret;
            }	
 
-            function getTokens()
+            function getTokens($type)
            {
            	$temp = [];
-               $ts = Tokens::where('id','>','0')->get();
+               if($type == "all") $ts = Tokens::where('id','>','0')->get();
+               else $ts = Tokens::where('class_id',$type)->get();
  
               if($ts != null)
                {

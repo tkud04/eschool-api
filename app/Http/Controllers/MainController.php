@@ -34,7 +34,7 @@ class MainController extends Controller {
 		$ret = ["status" => "error","data" => "Connection failed."];
         
              //$schoolCode = $this->helpers->getSchoolCode($req);
-			 $tokens = $this->helpers->getTokens();
+			 $tokens = $this->helpers->getTokens("all");
 			 
              if($tokens == null || count($tokens) < 1)
              {
@@ -95,8 +95,19 @@ class MainController extends Controller {
         //dd($req);
 		$ret = ["status" => "error","data" => "Connection failed."];
         
-             //$schoolCode = $this->helpers->getSchoolCode($req);
-			 $tokens = $this->helpers->getTokens();
+		  $validator = Validator::make($req, [
+                             'cid' => 'required',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             $ret = ["status" => "error","data" => $messages];
+         }
+         
+         else
+         {
+			 $tokens = $this->helpers->getTokens($req['cid']);
 			 
              if($tokens == null || count($tokens) < 1)
              {
@@ -105,7 +116,9 @@ class MainController extends Controller {
              else
              {
              	$ret = ["status" => "ok","data" => $tokens];
-             }        
+             }           
+         }
+                
          
          return json_encode($ret);		 
     }

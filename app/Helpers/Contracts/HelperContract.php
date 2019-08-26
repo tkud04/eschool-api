@@ -5,7 +5,7 @@ Interface HelperContract
 {
         public function createToken($data);
         public function getToken($student);
-        public function getTokens();
+        public function getTokens($type);
 		
 }
  ?>
