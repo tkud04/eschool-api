@@ -66,11 +66,18 @@ class Helper implements HelperContract
            
            function createToken($data)
            {
+			 $token = $this->getToken($data['student_id']);
+			 $ret = "Token already exists";
+			 
+			 if(count($token) < 1){
            	$ret = Tokens::create(['student_id' => $data['student_id'], 
                                                       'token' => $data['token'],                                                                                                            
                                                       'status' => "ok"                                                                                                            
                                                       ]);                                                     
-                return $ret;
+                $ret = "Token created";
+			 }
+			 
+			 return $ret;
            }	
 
             function getTokens()

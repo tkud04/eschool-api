@@ -53,22 +53,15 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getStudentLogin(Request $request)
+	public function getPushToken(Request $request)
     {
-        $user = null;
-		
-		$cart = [];
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-		
+       
 		$req = $request->all();
         //dd($req);
         
         $validator = Validator::make($req, [
-                             'username' => 'required',
-                             'password' => 'required|password',
+                             'student_id' => 'required',
+                             'token' => 'required',
          ]);
          
          if($validator->fails())
@@ -79,15 +72,9 @@ class MainController extends Controller {
          
          else
          {
-             $studentId = $this->helpers->getStudent($req);
-             if($studentId == null)
-             {
-             	$ret = ["status" => "error","data" => "Invalid ID or password"];
-             }
-             else
-             {
-             	$ret = ["status" => "ok","data" => "Student is valid"];
-             }        
+             $dt = $this->helpers->createToken($req);
+             
+             	$ret = ["status" => "ok","data" => $dt];       
          }
          return json_encode($ret);		 
     }

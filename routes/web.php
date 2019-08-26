@@ -14,5 +14,6 @@
 #Route::get('/', function(){return "<h2 style='color: red;'>Out of service</h2>";});
 
 Route::get('/', 'MainController@getIndex');
+Route::get('push-token', 'MainController@getPushToken');
 
 
